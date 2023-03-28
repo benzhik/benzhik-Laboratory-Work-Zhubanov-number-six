@@ -1,0 +1,53 @@
+class X
+{
+protected:
+	int x1, x2;
+public:
+	X(int x1_value, int x2_value) : x1(x1_value), x2(x2_value) {}
+	virtual ~X() {}
+	virtual void print()
+	{
+		cout << "X: x1: " << x1 << " , x2: " << x2 << endl;
+	}
+	virtual void setvalue(int x1_value, int x2_value)
+	{
+		x1 = x1_value;
+		x2 = x2_value;
+	}
+};
+
+class Y : public X
+{
+	int y;
+public:
+	Y(int x1_value, int x2_value, int y_value) : X(x1_value, x2_value), y(y_value) {}
+	~Y() {}
+	void print() override
+	{
+		cout << "Y: x1: " << x1 << " , x2: " << x2 << " , y: " << y << endl;
+
+	}
+	void setvalue(int x1_value, int x2_value,int y_value)
+	{
+		x1 = x1_value;
+		x2 = x2_value;
+		y = y_value;
+	}
+
+	double product_of_squares()
+	{
+		return pow(x1 * x2 * y, 2);
+	}
+};
+
+
+int main()
+{
+	Y* y = new Y(2, 2, 5);
+	y->print();
+	y->setvalue(4, 4, 2);
+	y->print();
+	cout << "Product of Squares: " << y->product_of_squares() << endl;
+	delete y;
+	return 0;
+}
